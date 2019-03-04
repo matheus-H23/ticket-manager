@@ -19,6 +19,10 @@ gem 'uglifier', '>= 1.3.0'
 # Custom Gems installation
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.2'
+# The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. http://getbootstrap.com
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+# This gem provides jQuery and the jQuery-ujs driver for your Rails 4+ application.
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
