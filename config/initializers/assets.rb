@@ -14,4 +14,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( admin.js admin.css
                                                   home.js home.scss
                                                   kind.js kind.scss
+                                                  devise.js devise.scss
                                                   tickets.js tickets.scss)
