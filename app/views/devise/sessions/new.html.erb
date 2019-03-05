@@ -14,6 +14,7 @@
   <div class="col-md-7 p-0 bg-white h-md-100 loginarea">
     <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{class: "col-md-7"}) do |f| %>
+
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -30,6 +31,8 @@
             <%= f.label :remember_me %>
           </div>
         <% end -%>
+
+        <%= devise_error_messages! %>
 
         <div class="actions">
           <%= f.submit "Log in", class: "btn btn-dark" %>
