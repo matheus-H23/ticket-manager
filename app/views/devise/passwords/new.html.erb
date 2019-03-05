@@ -1,16 +1,35 @@
-<h2>Forgot your password?</h2>
+<div class="d-md-flex h-md-100 align-items-center">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="col-md-5 p-0 bg-black h-md-100">
+    <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+      <div class="logoarea pt-5 pb-5">
+        <div class="login-main-text">
+          <h2>Magic-Tickets<br> Password Reset Page</h2>
+          <p>Forgot your password?</p>
+          <p>We will send to your e-mail the instructions for reset your password</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+  <div class="col-md-7 p-0 bg-white h-md-100 loginarea">
+    <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "col-md-7" }) do |f| %>
+        <%= devise_error_messages! %>
 
-<%= render "devise/shared/links" %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Reset Password", class: "btn btn-dark" %>
+        </div>
+
+        <%= render "devise/shared/links" %>
+
+      <% end %>
+    </div>
+  </div>
+
+</div>
