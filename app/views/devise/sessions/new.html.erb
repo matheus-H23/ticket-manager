@@ -1,6 +1,6 @@
 <div class="d-md-flex h-md-100 align-items-center">
 
-  <div class="col-md-5 p-0 bg-indigo h-md-100">
+  <div class="col-md-5 p-0 bg-black h-md-100">
     <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
       <div class="logoarea pt-5 pb-5">
         <div class="login-main-text">
@@ -33,7 +33,6 @@
 
         <div class="actions">
           <%= f.submit "Log in", class: "btn btn-dark" %>
-          <%= link_to "Register", new_user_registration_path, class: "btn btn-secondary" %>
         </div>
         <%= render "devise/shared/links" %>
       <% end %>
