@@ -23,6 +23,10 @@ gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 # This gem provides jQuery and the jQuery-ujs driver for your Rails 4+ application.
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+# Gem to provide a nice way to use notifications on Rails app
+gem 'notifyjs_rails'
+# the font-awesome font bundled as an asset for the rails asset pipeline http://fortawesome.github.com/Font-Awesome/
+gem "font-awesome-rails"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
