@@ -21,7 +21,29 @@ namespace :utils do
         email: "matheushmms@hotmail.com",
         password: "123456")
     puts "Gerando Master Admin (User)...[OK]"
+  end
 
+  task add_tickets: :environment do
+    puts "Gerando tickets 100 para teste..."
+      100.times do |i|
+        @status = Status.all.sample
+        @kind = Kind.all.sample
+        Ticket.create!(
+          title: Faker::Book.title,
+          kind: @kind,
+          status: @status,
+          test: 1)
+      end
+    puts "Gerando tickets 100 para teste...[OK]"
+  end
+
+  task del_tickets: :environment do
+    puts "Removendo tickets com a flag test..."
+      @tickets = Ticket.where(test: 1)
+      @tickets.each do |ticket|
+        ticket.destroy!
+      end
+    puts "Removendo tickets com a flag test...[OK]"
   end
 
 end
