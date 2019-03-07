@@ -1,0 +1,38 @@
+<div class="dashboard-header">
+  <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    <%= link_to account_tickets_path, class: "navbar-brand" do %>
+      <%= fa_icon "ticket", text: "MagicTickets" %>
+    <% end %>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse " id="navbarSupportedContent">
+         <ul class="navbar-nav ml-auto navbar-right-top">
+             <li class="nav-item">
+                 <div id="custom-search" class="top-search-bar">
+                     <input class="form-control" type="text" placeholder="Search..">
+                 </div>
+             </li>
+             <li class="nav-item dropdown nav-user">
+                <%= link_to "#", id: "navbarDropdownMenuLink2", class: "nav-link nav-user-img", data: {toggle: "dropdown"} do %>
+                  <%= fa_icon "circle", class: "user-avatar-md rounded-circle" %>
+                <% end %>
+                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                     <div class="nav-user-info">
+                         <h5 class="mb-0 text-white nav-user-name">Matheus Henrique </h5>
+                         <span class="status"></span><span class="ml-2">Available</span>
+                     </div>
+
+                     <%= link_to destroy_user_session_path, class: "dropdown-item" do %>
+                       <%= fa_icon "user", text: "Account", class: "mr-2" %>
+                     <% end %>
+                     
+                     <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                       <%= fa_icon "power-off", text: "Logout", class: "mr-2" %>
+                     <% end %>
+                 </div>
+             </li>
+         </ul>
+     </div>
+  </nav>
+</div>

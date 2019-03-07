@@ -16,6 +16,16 @@ Rails.application.routes.draw do
     resources :tickets
   end
 
+  devise_scope :user do
+    authenticated :user do
+      root 'home#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   root "home#index"
 
 end
