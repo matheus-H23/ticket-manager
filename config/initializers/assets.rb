@@ -15,6 +15,7 @@ Rails.application.config.assets.precompile += %w( admin.js admin.css
                                                   home.js home.scss
                                                   kind.js kind.scss
                                                   devise/devise.js devise/devise.scss
+                                                  account/base.scss
                                                   account/tickets.js account/tickets.scss
                                                   tickets.js tickets.scss
                                                   notify.js)
