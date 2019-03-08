@@ -34,3 +34,6 @@
 
 # Ignore bootstrap templates
 /public/templates
+
+# Ignore erd file
+/erd.pdf
