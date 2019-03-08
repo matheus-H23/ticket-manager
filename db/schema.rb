@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_031117) do
+ActiveRecord::Schema.define(version: 2019_03_07_233044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
 
   create_table "kinds", force: :cascade do |t|
     t.string "description"
@@ -33,8 +39,8 @@ ActiveRecord::Schema.define(version: 2019_03_07_031117) do
     t.datetime "updated_at", null: false
     t.bigint "kind_id"
     t.bigint "status_id"
-    t.integer "assignee"
-    t.integer "reporter"
+    t.integer "assignee_id"
+    t.integer "reporter_id"
     t.integer "test"
     t.index ["kind_id"], name: "index_tickets_on_kind_id"
     t.index ["status_id"], name: "index_tickets_on_status_id"
@@ -54,10 +60,14 @@ ActiveRecord::Schema.define(version: 2019_03_07_031117) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.bigint "group_id"
+    t.integer "test"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "tickets", "kinds"
   add_foreign_key "tickets", "statuses"
+  add_foreign_key "users", "groups"
 end
