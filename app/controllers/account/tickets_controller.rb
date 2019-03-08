@@ -9,7 +9,8 @@ class Account::TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets_recently = Ticket.where(reporter: current_user).where(updated_at: (Time.now - 24.hours)..Time.now).page(params[:recently]).per(6)
+    @tickets = Ticket.where(reporter: current_user).page(params[:page]).per(10)
   end
 
   # GET /tickets/1
@@ -80,5 +81,9 @@ class Account::TicketsController < ApplicationController
     def options_for_select
       @status_options_for_select = Status.all
       @kind_options_for_select = Kind.all
+    end
+
+    def recently_updated
+      #code
     end
 end

@@ -1,3 +1,52 @@
 // Place all the styles related to the account::tickets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.cointainer {
+  margin-top: 70px;
+  padding: 30px 30px 60px 30px;
+}
+
+.tickets-box {
+  padding: 30px 40px 20px 40px;
+}
+
+.tickets-box-title {
+  color: #3d405c;
+  margin-bottom: 20px;
+}
+
+.tickets-box-title h3 {
+}
+
+.tickets-box-table {
+  margin: 30px 0px;
+}
+
+.table-striped{
+  font-size: 15px;
+}
+
+.table {
+  text-align: center;
+}
+
+.table td:nth-child(n+2):nth-child(-n+3){
+  text-align: left;
+}
+
+
+// .tickets-box-table table {
+//   border-collapse: separate;
+//   border-spacing: 10px 0;
+// }
+
+.tickets-box-footer {
+  border-top: 1px solid #e0e4ef;
+}
+
+.row {
+  border: 1px solid #e0e4ef;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
