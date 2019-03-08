@@ -69,6 +69,8 @@ group :development do
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
   gem 'faker', '~> 1.6', '>= 1.6.6'
+  # Automatically generate an entity-relationship diagram (ERD) for your Rails models.
+  gem 'rails-erd', '~> 1.5', '>= 1.5.2'
 end
 
 group :test do
