@@ -2,14 +2,14 @@ namespace :utils do
   desc "Populando Banco de Dados..."
   task seed: :environment do
     puts "Gerando os tipos (Kinds)..."
-      @kinds = ["Plataforma", "Encoder", "Live", "Vídeo"]
+      @kinds = ["Uncategorized","Plataforma", "Encoder", "Live", "Vídeo"]
         @kinds.each do |kind|
           Kind.create!(description: kind)
         end
     puts "Gerando os tipos (Kinds)...[OK]"
 
     puts "Gerando os status (Status)..."
-      @status = ["Aberto", "Em Andamento", "Aguardando Cliente", "Atribuido", "Resolvido", "Fechado"]
+      @status = ["New", "Assigned","In Progress", "Hindered", "On Hold", "Solved", "Closed", "Canceled"]
       @status.each do |status|
         Status.create!(description: status)
       end
@@ -21,6 +21,14 @@ namespace :utils do
         Group.create!(name: group)
       end
     puts "Gerando Grupos (Group)...[OK]"
+
+    puts "Gerando Unassigned user (User)..."
+      User.create!(
+        name: "Unassigned",
+        email: "unassigned@magictickets.com",
+        password: "123456",
+        group: Group.find(1))
+    puts "Gerando Unassigned user (User)...[OK]"
 
     puts "Gerando Master Admin (User)..."
       User.create!(
