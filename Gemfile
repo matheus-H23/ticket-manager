@@ -65,6 +65,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # An IRB alternative and runtime developer console
   gem 'pry', '~> 0.10.3'
+  #
+  gem 'binding_of_caller'
   # Provides a better error page for Rails and other Rack apps. Includes source code inspection, a live REPL and local/instance variable inspection for all stack frames.
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
