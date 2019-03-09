@@ -31,15 +31,17 @@
   text-align: center;
 }
 
-.table td:nth-child(n+2):nth-child(-n+3){
+.table td:nth-child(n+3):nth-child(-n+4){
   text-align: left;
 }
 
+.tickets-box-form {
 
-// .tickets-box-table table {
-//   border-collapse: separate;
-//   border-spacing: 10px 0;
-// }
+}
+
+.col-form-label {
+  font-size: 18px
+}
 
 .tickets-box-footer {
   border-top: 1px solid #e0e4ef;
@@ -49,4 +51,5 @@
   border: 1px solid #e0e4ef;
   border-radius: 10px;
   margin-bottom: 20px;
+  box-shadow: 1px 1px 5px grey;
 }
