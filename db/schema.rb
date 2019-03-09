@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2019_03_08_021220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "kind_id"
-    t.bigint "status_id"
-    t.integer "assignee_id"
+    t.bigint "status_id", default: 1
+    t.integer "assignee_id", default: 1
     t.integer "reporter_id"
     t.integer "test"
     t.text "description"
