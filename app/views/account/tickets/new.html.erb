@@ -1,13 +1,11 @@
-<div class="cointainer col-md-12">
-  <div class="row col-md-10 offset-md-1 bg-light">
-    <div class="tickets-box col-md-12">
-      <div class="tickets-box-title">
-        <h3>Open Ticket
-        <span class="float-right"> <%= link_to 'Go Back', root_path, class: "btn btn-primary" %> </span></h3>
-      </div>
-      <div class="tickets-box-form">
-        <%= render 'form', ticket: @ticket %>
-      </div>
+<div class="col-md-8 offset-md-2">
+  <div class="tickets-box col-md-12 bg-light">
+    <div class="tickets-box-title">
+      <h3>Open Ticket
+      <span class="float-right"> <%= link_to 'Go Back', root_path, class: "btn btn-primary" %> </span></h3>
+    </div>
+    <div class="tickets-box-form">
+      <%= render 'form', ticket: @ticket %>
     </div>
   </div>
 </div>
