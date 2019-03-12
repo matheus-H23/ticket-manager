@@ -1,0 +1,106 @@
+<div class="tickets-box col-md-12 bg-light">
+  <div class="row">
+    <div class="ticket-header col-md-12">
+    </div>
+  </div>
+  <div class="row">
+    <div class="ticket-details col-md-4">
+      <div class="ticket-show-title">
+        <h3>Ticket Details</h3>
+      </div>
+      <div class="ticket-details-fields">
+        <%= form_with(model: ([:account, @ticket]), local: true) do |form| %>
+        <div class="form-group">
+          <%= form.label :id, 'ID',for: "inputId", class: "col-form-label" %>
+          <%= form.text_field :id, id: "inputId", type: "number", class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group">
+          <%= form.label :title, for: "inputTitle", class: "col-form-label" %>
+          <%= form.text_field :title, id: "inputTitle", type: "text", class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group">
+          <%= form.label :kind, for: "inputKind", class: "col-form-label" %>
+          <%= form.collection_select(:kind_id, @kind_options_for_select, :id, :description,{} ,{id: "inputKind", class: "form-control", disabled: true}) %>
+        </div>
+        <div class="form-group">
+          <%= form.label :status, for: "inputStatus", class: "col-form-label" %>
+          <%= form.collection_select(:status_id, @status_options_for_select, :id, :description,{} ,{id: "inputStatus", class: "form-control", disabled: true}) %>
+        </div>
+        <div class="form-group">
+          <%= form.label :assignee, for: "inputAssignee", class: "col-form-label" %>
+          <%= form.text_field :assignee, id: "inputAssignee", type: "text", class: "form-control", value: "#{@ticket.assignee.name}", disabled: "true" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :description, for: "inputDescription", class: "col-form-label" %>
+          <%= form.text_area :description, id: "inputDescription", type: "text", class: "form-control", rows: "5", disabled: true  %>
+        </div>
+        <% end %>
+        <div class="ticket-details-dates text-right">
+          <div class="ticket-details-created-at">
+            <%= @ticket.created_at.strftime("Created at %d/%m/%Y at %H:%m") %>
+          </div>
+          <div class="ticket-details-updated-at">
+            <%= @ticket.updated_at.strftime("Updated at %d/%m/%Y at %H:%m") %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ticket-feed col-md-8">
+      <div class="ticket-show-title">
+        <h3>Ticket Feed</h3>
+      </div>
+      <div class="ticket-feed-overflow">
+        <div class="ticket-log col-md-12">
+          <div class="ticket-log-content col-md-5">
+            <div class="log-header">
+              <h6>Modificado em:</h6>
+            </div>
+            <div class="log">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+              took a galley of type and scrambled it to make a type specimen book. It has survived not
+              only five centuries, but also the leap into electronic typesetting, remaining essentially
+              unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+              including versions of Lorem Ipsum.
+            </div>
+          </div>
+          <div class="ticket-log-timeline col-md-1">
+
+          </div>
+        </div>
+        <div class="ticket-log col-md-12">
+          <div class="ticket-log-content col-md-5 offset-md-7">
+            <div class="log-header">
+              <h6>Criado em:</h6>
+            </div>
+            <div class="log">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+              took a galley of type and scrambled it to make a type specimen book. It has survived not
+              only five centuries, but also the leap into electronic typesetting, remaining essentially
+              unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+              including versions of Lorem Ipsum.
+            </div>
+          </div>
+          <div class="ticket-log-timeline col-md-1">
+
+          </div>
+        </div>
+      </div>
+
+      <!-- <% @ticketlogs.each do |ticketlog, index| %>
+        <div class="ticket-log col-md-7">
+          <div class="log-header">
+            teste
+          </div>
+          <div class="log">
+            teste
+          </div>
+        </div>
+      <% end %> -->
+
+    </div>
+  </div>
+</div>

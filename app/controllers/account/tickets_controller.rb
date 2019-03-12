@@ -4,7 +4,7 @@ class Account::TicketsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_ticket, only: [:show, :edit, :update, :destroy, :reopen]
-  # before_action :options_for_select, only: [:new, :create, :edit, :update]
+  before_action :options_for_select, only: [:new, :create, :edit, :update, :show]
   before_action :save_url_params, only: [:destroy, :reopen]
 
   # GET /tickets
@@ -14,12 +14,13 @@ class Account::TicketsController < ApplicationController
                               .where.not('status_id = (?) OR status_id = (?)', find_status_closed_id, find_status_canceled_id)
                               .where(updated_at: (Time.now - 24.hours)..Time.now)
                               .page(params[:recently]).per(6)
-    @tickets = Ticket.where(reporter: current_user).page(params[:page]).per(10)
+    @tickets = Ticket.where(reporter: current_user).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   # GET /tickets/1
   # GET /tickets/1.json
   def show
+    @ticketlogs = TicketLog.where(ticket: @ticket).order(updated_at: :desc)
   end
 
   # GET /tickets/new
@@ -35,11 +36,10 @@ class Account::TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-    binding.pry
     set_default_data
-
     respond_to do |format|
       if @ticket.save
+        log_ticket_updates
         format.html { redirect_to account_tickets_path, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
@@ -54,6 +54,7 @@ class Account::TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
+        log_ticket_updates
         format.html { redirect_to account_tickets_path, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
@@ -68,6 +69,7 @@ class Account::TicketsController < ApplicationController
   def destroy
     set_cancel_status
     @ticket.save
+    log_ticket_updates
     respond_to do |format|
       format.html { redirect_to @last_page, notice: 'Ticket was successfully canceled.' }
       format.json { head :no_content }
@@ -77,6 +79,7 @@ class Account::TicketsController < ApplicationController
   def reopen
     set_new_status
     @ticket.save
+    log_ticket_updates
     respond_to do |format|
       format.html { redirect_to @last_page, notice: 'Ticket was successfully reopened.' }
       format.json { head :no_content }
@@ -122,5 +125,46 @@ class Account::TicketsController < ApplicationController
 
     def set_new_status
       @ticket.status = Status.where(description: "New").take
+    end
+
+    def log_ticket_updates
+      case action_name
+      when 'create'
+        @ticketlog = TicketLog.new(
+          ticket: @ticket,
+          log: {
+            Action: "Ticket Created:",
+            Ticket: @ticket
+          }
+        )
+        @ticketlog.save
+      when 'update'
+        @ticketlog = TicketLog.new(
+          ticket: @ticket,
+          log: {
+            Action: "Ticket Modified:",
+            Ticket: @ticket
+          }
+        )
+        @ticketlog.save
+      when "destroy"
+        @ticketlog = TicketLog.new(
+          ticket: @ticket,
+          log: {
+            Action: "Ticket Canceled:",
+            Ticket: @ticket
+          }
+        )
+        @ticketlog.save
+      when "reopen"
+        @ticketlog = TicketLog.new(
+          ticket: @ticket,
+          log: {
+            Action: "Ticket Reopened:",
+            Ticket: @ticket
+          }
+        )
+        @ticketlog.save
+      end
     end
 end

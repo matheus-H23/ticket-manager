@@ -9,6 +9,9 @@
 
 .tickets-box {
   padding: 30px 40px 20px 40px;
+  border: 1px solid #e0e4ef;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px grey;
 }
 
 .tickets-box-title {
@@ -47,9 +50,38 @@
   border-top: 1px solid #e0e4ef;
 }
 
-.row {
+.ticket-details {
+  border-right: 1px solid black;
+}
+.ticket-feed {
+}
+
+.ticket-show-title, .h3 {
+  color: #495057;
+  border-bottom: 1px solid;
+  margin-bottom: 25px;
+}
+
+.col-form-label, .ticket-details-dates{
+  color: #495057;
+}
+
+.ticket-details-dates {
+  font-size: 12px;
+}
+
+.ticket-feed-overflow {
+  overflow: auto;
+  height: 700px;
+
+}
+
+.ticket-log {
+  margin-bottom: 40px
+}
+
+.ticket-log-content {
   border: 1px solid #e0e4ef;
   border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 1px 1px 5px grey;
+  padding: 20px;
 }
