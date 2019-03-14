@@ -50,57 +50,26 @@
         <h3>Ticket Feed</h3>
       </div>
       <div class="ticket-feed-overflow">
-        <div class="ticket-log col-md-12">
-          <div class="ticket-log-content col-md-5">
-            <div class="log-header">
-              <h6>Modificado em:</h6>
+        <% @ticketlogs.each_with_index do |ticketlog, index| %>
+        <div id= "<%= "ticket-log-#{index}" %>" class="ticket-log col-md-12">
+          <div class="ticket-log-content col-md-5 <%= 'offset-md-7' if index.odd? %>">
+            <div class="ticket-log-header">
+              <h5><%= ticketlog.log['action']%></h5><br />
             </div>
             <div class="log">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-              took a galley of type and scrambled it to make a type specimen book. It has survived not
-              only five centuries, but also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-              including versions of Lorem Ipsum.
+              <p> Title: <%=  ticketlog.log['changes']['title'] %> </p>
+              <p> Description: <%=  truncate(ticketlog.log['changes']['description'], length: 80) %> </p>
+              <p> Kind: <%=  ticketlog.log['changes']['kind'] %> </p>
+              <p> Status: <%=  ticketlog.log['changes']['status'] %> </p>
+              <p> Assignee: <%=  ticketlog.log['changes']['assignee'] %> </p>
             </div>
           </div>
           <div class="ticket-log-timeline col-md-1">
 
           </div>
         </div>
-        <div class="ticket-log col-md-12">
-          <div class="ticket-log-content col-md-5 offset-md-7">
-            <div class="log-header">
-              <h6>Criado em:</h6>
-            </div>
-            <div class="log">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-              took a galley of type and scrambled it to make a type specimen book. It has survived not
-              only five centuries, but also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-              including versions of Lorem Ipsum.
-            </div>
-          </div>
-          <div class="ticket-log-timeline col-md-1">
-
-          </div>
-        </div>
+        <% end %>
       </div>
-
-      <!-- <% @ticketlogs.each do |ticketlog, index| %>
-        <div class="ticket-log col-md-7">
-          <div class="log-header">
-            teste
-          </div>
-          <div class="log">
-            teste
-          </div>
-        </div>
-      <% end %> -->
-
     </div>
   </div>
 </div>

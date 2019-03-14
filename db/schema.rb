@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_022517) do
 
   create_table "ticket_logs", force: :cascade do |t|
     t.bigint "ticket_id"
-    t.text "log"
+    t.json "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ticket_id"], name: "index_ticket_logs_on_ticket_id"

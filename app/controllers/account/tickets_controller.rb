@@ -11,8 +11,9 @@ class Account::TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets_recently = Ticket.where(reporter: current_user)
-                              .where.not('status_id = (?) OR status_id = (?)', find_status_closed_id, find_status_canceled_id)
+                              .where.not('status_id = (?) OR status_id = (?)', Status.closed_id, Status.cancel_id)
                               .where(updated_at: (Time.now - 24.hours)..Time.now)
+                              .order(updated_at: :desc)
                               .page(params[:recently]).per(6)
     @tickets = Ticket.where(reporter: current_user).order(updated_at: :desc).page(params[:page]).per(10)
   end
@@ -39,7 +40,7 @@ class Account::TicketsController < ApplicationController
     set_default_data
     respond_to do |format|
       if @ticket.save
-        log_ticket_updates
+        Account::Tickets::TicketLogs.create(@ticket)
         format.html { redirect_to account_tickets_path, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
@@ -52,9 +53,10 @@ class Account::TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
   def update
+    @ticketold = Ticket.find(@ticket.id)
     respond_to do |format|
       if @ticket.update(ticket_params)
-        log_ticket_updates
+        Account::Tickets::TicketLogs.update(@ticket, @ticketold)
         format.html { redirect_to account_tickets_path, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
@@ -69,7 +71,7 @@ class Account::TicketsController < ApplicationController
   def destroy
     set_cancel_status
     @ticket.save
-    log_ticket_updates
+    Account::Tickets::TicketLogs.cancel(@ticket)
     respond_to do |format|
       format.html { redirect_to @last_page, notice: 'Ticket was successfully canceled.' }
       format.json { head :no_content }
@@ -79,7 +81,7 @@ class Account::TicketsController < ApplicationController
   def reopen
     set_new_status
     @ticket.save
-    log_ticket_updates
+    Account::Tickets::TicketLogs.reopen (@ticket)
     respond_to do |format|
       format.html { redirect_to @last_page, notice: 'Ticket was successfully reopened.' }
       format.json { head :no_content }
@@ -111,16 +113,8 @@ class Account::TicketsController < ApplicationController
       @ticket.reporter = current_user
     end
 
-    def find_status_canceled_id
-      @canceled = Status.where(description: "Canceled").take.id
-    end
-
-    def find_status_closed_id
-      @closed = Status.where(description: "Closed").take.id
-    end
-
     def set_cancel_status
-      @ticket.status_id = find_status_canceled_id
+      @ticket.status_id = Status.cancel_id
     end
 
     def set_new_status
@@ -133,8 +127,8 @@ class Account::TicketsController < ApplicationController
         @ticketlog = TicketLog.new(
           ticket: @ticket,
           log: {
-            Action: "Ticket Created:",
-            Ticket: @ticket
+            action: "Ticket Created:",
+            ticket: @ticket
           }
         )
         @ticketlog.save
@@ -142,8 +136,8 @@ class Account::TicketsController < ApplicationController
         @ticketlog = TicketLog.new(
           ticket: @ticket,
           log: {
-            Action: "Ticket Modified:",
-            Ticket: @ticket
+            action: "Ticket Modified:",
+            ticket: @ticket
           }
         )
         @ticketlog.save
@@ -151,8 +145,8 @@ class Account::TicketsController < ApplicationController
         @ticketlog = TicketLog.new(
           ticket: @ticket,
           log: {
-            Action: "Ticket Canceled:",
-            Ticket: @ticket
+            action: "Ticket Canceled:",
+            ticket: @ticket
           }
         )
         @ticketlog.save
@@ -160,8 +154,8 @@ class Account::TicketsController < ApplicationController
         @ticketlog = TicketLog.new(
           ticket: @ticket,
           log: {
-            Action: "Ticket Reopened:",
-            Ticket: @ticket
+            action: "Ticket Reopened:",
+            ticket: @ticket
           }
         )
         @ticketlog.save

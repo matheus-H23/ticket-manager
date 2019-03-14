@@ -60,7 +60,7 @@ namespace :utils do
 
   task del_tickets: :environment do
     puts "Removendo tickets com a flag test..."
-      @tickets = Ticket.where(test: 1)
+      @tickets = Ticket.all
       @tickets.each do |ticket|
         ticket.destroy!
       end
