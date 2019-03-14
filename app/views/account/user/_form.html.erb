@@ -1,0 +1,36 @@
+<%= form_with scope: @user, url: account_profile_path, local: true, method: :put do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, for: "inputName", class: "col-form-label" %>
+    <%= form.text_field :name, id: "inputName", type: "text", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email, for: "inputEmail", class: "col-form-label" %>
+    <%= form.text_field :email, id: "inputEmail", type: "text", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :password, for: "inputPassword", class: "col-form-label" %>
+    <%= form.text_field :password, id: "inputPassword", type: "password", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :password_confirmation, for: "inputName", class: "col-form-label" %>
+    <%= form.text_field :password_confirmation, id: "inputName", type: "password", class: "form-control" %>
+  </div>
+
+  <div class="actions form-group text-center mt-5">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

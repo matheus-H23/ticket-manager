@@ -19,14 +19,14 @@
                 <% end %>
                  <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                      <div class="nav-user-info">
-                         <h5 class="mb-0 text-white nav-user-name">Matheus Henrique </h5>
-                         <span class="status"></span><span class="ml-2">Available</span>
+                         <h5 class="mb-0 text-white nav-user-name"><%= truncate(current_user.name,lenght: 10) %> </h5>
+                         <span class="status"></span><span class="ml-2"><%= current_user.group.name %></span>
                      </div>
 
-                     <%= link_to destroy_user_session_path, class: "dropdown-item" do %>
+                     <%= link_to account_profile_path, class: "dropdown-item" do %>
                        <%= fa_icon "user", text: "Account", class: "mr-2" %>
                      <% end %>
-                     
+
                      <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
                        <%= fa_icon "power-off", text: "Logout", class: "mr-2" %>
                      <% end %>

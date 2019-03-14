@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   namespace :account do
     resources :tickets
     put '/tickets/:id/reopen', to: 'tickets#reopen', as: 'ticket_reopen'
+    get '/profile', to: 'user#edit'
+    put '/profile', to: 'user#update'
   end
 
   devise_scope :user do

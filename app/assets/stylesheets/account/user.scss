@@ -1,0 +1,16 @@
+// Place all the styles related to the Account::User controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.user-box {
+  padding: 30px 40px 20px 40px;
+  border: 1px solid #e0e4ef;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px grey;
+}
+
+.user-box-title {
+  color: #3d405c;
+  margin-bottom: 40px;
+}
