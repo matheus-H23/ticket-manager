@@ -73,6 +73,8 @@ group :development do
   gem 'faker', '~> 1.6', '>= 1.6.6'
   # Automatically generate an entity-relationship diagram (ERD) for your Rails models.
   gem 'rails-erd', '~> 1.5', '>= 1.5.2'
+  # A Ruby static code analyzer and formatter, based on the community Ruby style guide. https://docs.rubocop.org
+  gem 'rubocop', '~> 0.65.0', require: false
 end
 
 group :test do
