@@ -121,44 +121,4 @@ class Account::TicketsController < ApplicationController
       @ticket.status = Status.where(description: "New").take
     end
 
-    def log_ticket_updates
-      case action_name
-      when 'create'
-        @ticketlog = TicketLog.new(
-          ticket: @ticket,
-          log: {
-            action: "Ticket Created:",
-            ticket: @ticket
-          }
-        )
-        @ticketlog.save
-      when 'update'
-        @ticketlog = TicketLog.new(
-          ticket: @ticket,
-          log: {
-            action: "Ticket Modified:",
-            ticket: @ticket
-          }
-        )
-        @ticketlog.save
-      when "destroy"
-        @ticketlog = TicketLog.new(
-          ticket: @ticket,
-          log: {
-            action: "Ticket Canceled:",
-            ticket: @ticket
-          }
-        )
-        @ticketlog.save
-      when "reopen"
-        @ticketlog = TicketLog.new(
-          ticket: @ticket,
-          log: {
-            action: "Ticket Reopened:",
-            ticket: @ticket
-          }
-        )
-        @ticketlog.save
-      end
-    end
 end
