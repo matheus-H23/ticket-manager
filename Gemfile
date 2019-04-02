@@ -27,6 +27,8 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'notifyjs_rails'
 # the font-awesome font bundled as an asset for the rails asset pipeline http://fortawesome.github.com/Font-Awesome/
 gem "font-awesome-rails"
+# The authorization Gem for Ruby on Rails.
+gem 'cancancan', '~> 1.15'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
