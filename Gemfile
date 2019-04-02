@@ -29,6 +29,8 @@ gem 'notifyjs_rails'
 gem "font-awesome-rails"
 # The authorization Gem for Ruby on Rails.
 gem 'cancancan', '~> 1.15'
+# Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
+gem 'faker', '~> 1.6', '>= 1.6.6'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
