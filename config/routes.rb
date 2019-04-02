@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   namespace :manager do
     resources :tickets
+    resources :kinds, except: :show
+    resources :groups, except: :show
+    resources :statuses, except: :show
   end
 
   namespace :account do

@@ -18,5 +18,7 @@ Rails.application.config.assets.precompile += %w( admin.js admin.css
                                                   account/base.scss
                                                   account/tickets.js account/tickets.scss
                                                   account/user.js account/user.scss
+                                                  manager/tickets.js manager/tickets.scss
+                                                  manager/base.scss
                                                   tickets.js tickets.scss
                                                   notify.js)
