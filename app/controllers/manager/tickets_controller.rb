@@ -5,7 +5,15 @@ class Manager::TicketsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    #code
+
+  end
+
+  private
+
+  def is_manager?
+    unless current_user.group.description == 'Manager'
+
+    end
   end
 
 end

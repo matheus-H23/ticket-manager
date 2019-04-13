@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   namespace :manager do
     resources :tickets
     resources :kinds, except: :show
-    resources :groups, except: :show
+    resources :groups
     resources :statuses, except: :show
+    resources :users
   end
 
   namespace :account do

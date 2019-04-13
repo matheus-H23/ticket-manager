@@ -16,18 +16,16 @@
 
   </head>
 
-  <body>
+  <body class="bg-light">
 
     <%= render 'account/shared/header'%>
 
-    <div class="wrapper">
-
-      <%= render 'manager/shared/sidebar' %>
-
-      <div class="cointainer col-md-24">
-        <div class="row col-md-22">
-          <%= yield %>
-        </div>
+    <div class="row content col-md-12">
+      <div class="manager-sidebar col-md-2 bg-white">
+        <%= render 'manager/shared/sidebar' %>
+      </div>
+      <div class="manager-content col-md-10 bg-light p-md-5">
+        teste
       </div>
     </div>
 

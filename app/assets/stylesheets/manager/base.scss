@@ -1,5 +1,6 @@
-.wrapper {
-  margin-top: 70px;
+.content {
+  margin-top: 68px;
+  min-height: 100%;
 }
 
 .nav-divider{
@@ -15,4 +16,14 @@
   padding-left: 5px;
   padding-top: 5px;
   font-size: 15px;
+}
+
+.manager-sidebar{
+  border-right: 1px solid #e6e6f2;
+  height: 100%;
+}
+
+.nav-left-sidebar {
+  margin-top: 10px;
+  min-height: 100%;
 }

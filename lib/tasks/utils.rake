@@ -16,7 +16,7 @@ namespace :utils do
     puts "Gerando os status (Status)...[OK]"
 
     puts "Gerando Grupos (Group)..."
-      @groups = ["Manager", "Client"]
+      @groups = ["Manager", "Agent", "Client"]
       @groups.each do |group|
         Group.create!(name: group)
       end
