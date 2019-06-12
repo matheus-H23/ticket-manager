@@ -8,27 +8,35 @@
           </a>
         </li>
         <li class="nav-divider">
-          <a href="#" class="nav-link-active" data-toggle="collapse" aria-expanded="false" data-target="#tickets-submenu" aria-controls="tickets-submenu">
+          <a href="#" class="nav-link-active">
             <b>Tickets</b>
           </a>
         </li>
         <li class="nav-item">
-          <div id="tickets-submenu" class="submenu collapse">
+          <div class="">
             <ul class="navbar-nav flex-column">
               <li class="nav-item">
-                All Tickets <span class="badge badge-pill badge-primary">999+</span>
+                <%= link_to manager_tickets_path(q: "all"),class: "nav-link-active" do %>
+                  All Tickets <span class="badge badge-pill badge-primary">999+</span>
+                <% end %>
               </li>
               <li class="nav-item">
-                Opened Tickets <span class="badge badge-pill badge-primary">999+</span>
+                <%= link_to manager_tickets_path(q: "opened"), class: "nav-link-active" do %>
+                  Opened Tickets <span class="badge badge-pill badge-primary">999+</span>
+                <% end %>
               </li>
               <li class="nav-item">
-                Assigned to Me <span class="badge badge-pill badge-primary">999+</span>
+                <%= link_to manager_tickets_path(q: "assigned"), class: "nav-link-active" do %>
+                  Assigned to Me <span class="badge badge-pill badge-primary">999+</span>
+                <% end %>
               </li>
             </ul>
           </div>
         </li>
         <li class="nav-divider">
-          <b>Manage Kinds</b>
+          <%=  link_to manager_kinds_path, class: "nav-link-active" do%>
+            <b>Manage Kinds</b>
+          <% end %>
         </li>
         <li class="nav-divider">
           <b>Users</b>
