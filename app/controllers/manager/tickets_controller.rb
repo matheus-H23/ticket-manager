@@ -5,7 +5,7 @@ class Manager::TicketsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+    @tickets = Ticket.all.page(params[:page]).per(8)
   end
 
   private
@@ -14,6 +14,9 @@ class Manager::TicketsController < ApplicationController
     unless current_user.group.description == 'Manager'
 
     end
+  end
+
+  def tickets_query_type
   end
 
 end

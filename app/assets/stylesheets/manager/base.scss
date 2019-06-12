@@ -8,7 +8,7 @@
   padding-top: 10px;
 }
 
-.nav-divider a {
+.nav-divider a, .nav-item a {
   text-decoration: none;
 }
 
@@ -20,10 +20,9 @@
 
 .manager-sidebar{
   border-right: 1px solid #e6e6f2;
-  height: 100%;
 }
 
-.nav-left-sidebar {
-  margin-top: 10px;
-  min-height: 100%;
+.manager-content {
+  padding-top: 20px;
+  padding-left: 50px;
 }
