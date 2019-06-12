@@ -4,7 +4,7 @@ namespace :utils do
     puts "Gerando os tipos (Kinds)..."
       @kinds = ["Uncategorized","Plataforma", "Encoder", "Live", "Vídeo"]
         @kinds.each do |kind|
-          Kind.create!(description: kind)
+          Kind.create!(title: kind)
         end
     puts "Gerando os tipos (Kinds)...[OK]"
 
