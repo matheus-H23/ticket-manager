@@ -89,5 +89,10 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+group :development, :test do
+  # RSpec for Rails-3+ http://relishapp.com/rspec/rspec-rails
+  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
