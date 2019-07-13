@@ -1,0 +1,108 @@
+<div class="tickets-box col-md-12 bg-light">
+  <div class="row">
+    <div class="ticket-header col-md-12">
+    </div>
+  </div>
+  <div class="row">
+    <div class="ticket-details col-md-3">
+      <div class="ticket-show-title">
+        <h3>User Details</h3>
+      </div>
+      <div class="ticket-details-fields">
+        <%= form_with(model: ([:manager, @user]), local: true) do |form| %>
+        <div class="form-group">
+          <%= form.label :id, 'ID',for: "inputId", class: "col-form-label" %>
+          <%= form.text_field :id, id: "inputId", type: "number", class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group">
+          <%= form.label :name, 'Name',for: "inputName", class: "col-form-label" %>
+          <%= form.text_field :name, id: "inputName", type: "text", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :group, for: "inputKind", class: "col-form-label" %>
+          <%= form.collection_select(:group_id, @groups_options_for_select, :id, :name,{} ,{id: "inputKind", class: "form-control"}) %>
+        </div>
+        <div class="form-group">
+          <%= form.label :test, 'Test?',for: "chckbxTest", class: "col-form-label" %>
+          <%= form.check_box :test, id: "chckbxTest", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :active, 'Active?',for: "chckbxActive", class: "col-form-label" %>
+          <%= form.check_box :active, id: "chckbxActive", class: "form-control" %>
+        </div>
+        <div class="actions form-group text-center mt-5">
+          <%= form.submit class: "btn btn-primary" %>
+        </div>
+        <% end %>
+        <div class="ticket-details-dates text-right">
+          <div class="ticket-details-created-at">
+            <%= @user.created_at.strftime("Created at %d/%m/%Y at %H:%m") %>
+          </div>
+          <div class="ticket-details-updated-at">
+            <%= @user.updated_at.strftime("Updated at %d/%m/%Y at %H:%m") %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ticket-feed col-md-9">
+      <div class="ticket-show-title">
+        <h3>Tickets</h3>
+      </div>
+      <div class="ticket-feed-overflow">
+        <table class="table table-striped table-bordered first">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Status</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Assignee</th>
+              <th>Last updated</th>
+              <th colspan="3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @tickets.each do |ticket| %>
+              <tr>
+                <td>
+                  <%= link_to account_ticket_path(ticket) do %>
+                    <%= ticket.id %>
+                  <% end %>
+                </td>
+                <td><%= ticket.status.description %></td>
+                <td>
+                  <%= link_to account_ticket_path(ticket) do %>
+                    <%= truncate(ticket.title, length: 28) %>
+                  <% end %>
+                </td>
+                <% if ticket.description.present? %>
+                  <td><%= truncate(ticket.description, length: 50) %></td>
+                <% else %>
+                  <td><%= '...' %></td>
+                <% end %>
+                <% if ticket.assignee.present? %>
+                  <td><%= truncate(ticket.assignee.name, length: 15) %></td>
+                <% else %>
+                  <td><%= 'Not yet Assigned' %></td>
+                <% end %>
+                <td><%= ticket.updated_at.strftime("%d/%m/%y at %H:%M")%></td>
+                <% if ticket.status.description == "Canceled" %>
+                  <td colspan="2"><%= link_to 'Reopen', account_ticket_reopen_path(ticket), method: :put, data: { confirm: 'Are you sure you want to reopen the ticket?' } %></td>
+                <% else %>
+                  <td><%= link_to 'Edit', edit_account_ticket_path(ticket) %></td>
+                  <td><%= link_to 'Cancel', account_ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure you want to cancel the ticket?' } %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="tickets-box-footer">
+          <div class="col-md-7 offset-md-5">
+            <%= paginate @tickets, window: 2 %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   belongs_to :group
   has_many :tickets, foreign_key: 'assignee_id'
-  has_many :tickets, foreign_key: 'reporter_id'
+  has_many :tickets, foreign_key: 'reporter_id', dependent: :delete_all 
 end

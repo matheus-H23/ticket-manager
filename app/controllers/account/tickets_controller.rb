@@ -3,9 +3,9 @@ class Account::TicketsController < ApplicationController
   layout "account"
 
   before_action :authenticate_user!
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy, :reopen]
-  before_action :options_for_select, only: [:new, :create, :edit, :update, :show]
-  before_action :save_url_params, only: [:destroy, :reopen]
+  before_action :set_ticket, only: %i[show edit update destroy reopen]
+  before_action :options_for_select, only: %i[new create edit update show]
+  before_action :save_last_url, only: %i[destroy reopen]
 
   # GET /tickets
   # GET /tickets.json
@@ -81,7 +81,7 @@ class Account::TicketsController < ApplicationController
   def reopen
     set_new_status
     @ticket.save
-    Account::Tickets::TicketLogs.reopen (@ticket)
+    Account::Tickets::TicketLogs.reopen(@ticket)
     respond_to do |format|
       format.html { redirect_to @last_page, notice: 'Ticket was successfully reopened.' }
       format.json { head :no_content }
@@ -89,36 +89,37 @@ class Account::TicketsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
-    def options_for_select
-      @status_options_for_select = Status.all
-      @kind_options_for_select = Kind.all
-    end
+  # Never trust parameters from the scary internet, only allow the white
+  # list through.
+  def ticket_params
+    params.require(:ticket).permit(:title, :description)
+  end
 
-    def save_url_params
-      @last_page = request.referer
-    end
+  def options_for_select
+    @status_options_for_select = Status.all
+    @kind_options_for_select = Kind.all
+  end
 
-    def set_default_data
-      @ticket.kind = Kind.first
-      @ticket.reporter = current_user
-    end
+  def save_last_url
+    @last_page = request.referer
+  end
 
-    def set_cancel_status
-      @ticket.status_id = Status.cancel_id
-    end
+  def set_default_data
+    @ticket.kind = Kind.first
+    @ticket.reporter = current_user
+  end
 
-    def set_new_status
-      @ticket.status = Status.where(description: "New").take
-    end
+  def set_cancel_status
+    @ticket.status_id = Status.cancel_id
+  end
 
+  def set_new_status
+    @ticket.status = Status.where(description: 'New').take
+  end
 end

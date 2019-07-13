@@ -10,7 +10,7 @@ class Manager::KindsController < ApplicationController
   # GET /kinds
   # GET /kinds.json
   def index
-    @kinds = Kind.order(:id).page(params[:page]).per(10)
+    @kinds = Kind.where.not(id: 1).order(:id).page(params[:page]).per(10)
   end
 
   # GET /kinds/1
@@ -80,9 +80,10 @@ class Manager::KindsController < ApplicationController
     end
 
     def uncategorize_tickets
+      @kind_uncategorized = Kind.first
       @tickets = Ticket.where(kind: @kind)
       @tickets.each do |ticket|
-        ticket.kind = Kind.first
+        ticket.kind = @kind_uncategorized
         ticket.save!
       end
     end

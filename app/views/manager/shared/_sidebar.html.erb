@@ -8,9 +8,9 @@
           </a>
         </li>
         <li class="nav-divider">
-          <a href="#" class="nav-link-active">
+          <%= link_to manager_tickets_path(q: "all"), class: "nav-link-active" do %>
             <b>Tickets</b>
-          </a>
+          <% end %>
         </li>
         <li class="nav-item">
           <div class="">
@@ -34,12 +34,14 @@
           </div>
         </li>
         <li class="nav-divider">
-          <%=  link_to manager_kinds_path, class: "nav-link-active" do%>
+          <%= link_to manager_kinds_path, class: "nav-link-active" do%>
             <b>Manage Kinds</b>
           <% end %>
         </li>
         <li class="nav-divider">
-          <b>Users</b>
+          <%= link_to manager_users_path, class: "nav-link-active" do %>
+            <b>Users</b>
+          <% end %>
         </li>
         <li class="nav-divider">
           <b>Groups</b>

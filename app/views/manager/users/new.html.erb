@@ -1,0 +1,11 @@
+<div class="col-md-8 offset-md-2">
+  <div class="tickets-box col-md-12 bg-light">
+    <div class="tickets-box-title">
+      <h3>New User
+      <span class="float-right"> <%= link_to 'Go Back', manager_users_path, class: "btn btn-primary" %> </span></h3>
+    </div>
+    <div class="tickets-box-form">
+      <%= render 'form', user: @user %>
+    </div>
+  </div>
+</div>
