@@ -39,7 +39,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator for Rails 3+
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
