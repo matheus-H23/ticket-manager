@@ -72,7 +72,7 @@ group :development do
   #
   gem 'binding_of_caller'
   # Provides a better error page for Rails and other Rack apps. Includes source code inspection, a live REPL and local/instance variable inspection for all stack frames.
-  gem 'better_errors', '~> 2.1', '>= 2.1.1'
+  gem 'better_errors', '~> 2.8'
   # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
   gem 'faker', '~> 1.6', '>= 1.6.6'
   # Automatically generate an entity-relationship diagram (ERD) for your Rails models.
